@@ -1,35 +1,69 @@
 import React from 'react';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
-import ListItemText from '@mui/material/ListItemText';
-type AutoCompleteType = {
-  label: string;
-  labelText: string;
-  optionsArr: string[];
-};
-const AutoComplete = ({ label, labelText, optionsArr }: AutoCompleteType) => {
+import { AutoCompleteType } from '../type/type';
+import { useForm, Controller } from 'react-hook-form';
+const AutoComplete = ({
+  label,
+  labelText,
+  optionsArr,
+  errors,
+  name,
+  register,
+  control,
+}: AutoCompleteType) => {
   const options = optionsArr;
-  const [value, setValue] = React.useState<string | null>(options[0]);
-  return (
-    
-    <div style={{width:"100%"}} >
-      <label htmlFor="">{labelText}</label>
-      <div>
+  //   const [errors
+  console.log(errors);
 
-        <br />
+  return (
+    <Controller
+      name="autocompleteInput"
+      control={control}
+      rules={{
+        required: 'Please enter something',
+      }}
+      render={({ field, fieldState }) => (
         <Autocomplete
-          value={value}
-          
-          onChange={(event: any, newValue: string | null) => {
-            setValue(newValue);
-          }}
-          id="controllable-states-demo"
-          options={options}
+          getOptionLabel={(option) => option}
+          helperText={fieldState.error?.message}
           sx={{ width: 1 }}
-          renderInput={(params) => <TextField {...params} label={label} />}
+          error={!!fieldState.error}
+          {...field}
+          {...register(name, {
+            required: {
+              message: 'select is required',
+              value: true,
+            },
+          })}
+          options={options}
+          renderInput={(params) => (
+            <TextField {...params} label="Autocomplete" />
+          )}
+          onChange={(_, data) => field.onChange(data)}
         />
-      </div>
-    </div>
+      )}
+    />
+
+    // <div style={{ width: '100%' }}>
+    //   <label htmlFor="">{labelText}</label>
+    //   <div>
+    //     <br />
+    //     <Autocomplete
+    //       //   value={value}
+    //
+    //       //   onChange={(event: any, newValue: string | null) => {
+    //       //     // setValue(newValue);
+    //       //   }}
+    //       error={errors[name] ? true : false}
+    //       id="controllable-states-demo"
+    //       options={options}
+    //       sx={{ width: 1 }}
+    //       renderInput={(params) => <TextField {...params} label={label} />}
+    //       helperText={errors[name] && 'hiiiii'}
+    //     />
+    //   </div>
+    // </div>
   );
 };
 
