@@ -1,15 +1,29 @@
-import { Buttontype } from "../type/type";
+import { Buttontype } from '../type/type';
+import { styled } from '@mui/material/styles';
+import Button, { ButtonProps } from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
+import { purple } from '@mui/material/colors';
 
-const Button = ({ children, onClick, style  , type}: Buttontype) => {
+const ColorButton = styled(Button)<ButtonProps>(({ theme, bg }) => ({
+  color: theme.palette.getContrastText(purple[500]),
+  backgroundColor: bg,
+  '&:hover': {
+    backgroundColor: bg,
+  },
+}));
+
+ function ButtonCustom({
+  bg,
+  children,
+  onClick,
+  type,
+}: Buttontype) {
   return (
-    <button
-    type={type}
-      className={` text-center flex items-center justify-center  ${style}`}
-      onClick={onClick}
-    >
-      {children}
-    </button>
+    <Stack spacing={2} direction="row">
+      <ColorButton bg={bg} variant="contained" onClick={onClick} type={type}>
+        {children}
+      </ColorButton>
+    </Stack>
   );
-};
-
-export default Button;
+}
+export default ButtonCustom

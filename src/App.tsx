@@ -1,16 +1,17 @@
-import { useState } from 'react'
+import { useState } from 'react';
 
-import { TextField } from '@mui/material'
-import ValidationTextFields from './text'
+import Form from './layout/form';
+import Button from './components/Button';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
 
   return (
     <>
-     <ValidationTextFields/>
+     
+      <Form />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
