@@ -1,0 +1,22 @@
+html,
+#root,
+body {
+  background-color: #f1f4fd;
+  width: 100%;
+  height: 100%;
+}
+@font-face {
+  font-family: ;
+  src: url();
+}
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}

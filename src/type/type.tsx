@@ -4,6 +4,7 @@ export type Buttontype = {
     onClick?: React.MouseEventHandler<HTMLButtonElement>;
     style?: string;
     type?: string;
+    width?:string
   };
 
 export type text = string   
