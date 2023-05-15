@@ -1,5 +1,6 @@
 import { Container, Typography } from '@mui/material';
 import Box from '@mui/material/Box';
+import ListButton from '../components/ListButton';
 const QuestionPage = () => {
   return (
     <Container
@@ -50,6 +51,7 @@ const QuestionPage = () => {
           Why this is happend in japan ? which one in correct
           aswer?????????????/
         </Typography>
+        <ListButton/>
       </Box>
     </Container>
   );

@@ -6,11 +6,12 @@ import ButtonCustom from '../components/Button';
 import { Container } from '@mui/material';
 import { useForm, Controller } from 'react-hook-form';
 import { Inputs } from '../type/type';
-import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { submit } from '../redux/slices/Form.slice';
 const Category = [
   {
     value: '',
-    label: "Category",
+    label: 'Category',
   },
   {
     value: 'public',
@@ -28,11 +29,12 @@ const Category = [
 const Difficulty = [
   {
     value: '',
-    label: "Difficulty",
-  },{
-      value: 'easy',
-      label: 'easy',
-    },
+    label: 'Difficulty',
+  },
+  {
+    value: 'easy',
+    label: 'easy',
+  },
   {
     value: 'medium',
     label: 'medium',
@@ -41,10 +43,9 @@ const Difficulty = [
     value: 'hard',
     label: 'hard',
   },
-
 ];
 const Form = () => {
-  const [textValue, setTextValue] = useState({});
+  const FormValue = useSelector((state: any) => state.counter.value);
 
   const {
     register,
@@ -57,7 +58,7 @@ const Form = () => {
     delayError: 1000,
   });
   const onSubmit = (data: Inputs) => {
-    alert(JSON.stringify(data, null, 2));
+    console.log(JSON.stringify(data, null, 2));
     reset();
   };
   return (
