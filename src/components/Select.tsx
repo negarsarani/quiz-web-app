@@ -11,13 +11,15 @@ const Select = ({
   showError,
   name,
   errors,
-  labelText
+  labelText,
+  field
 }: selectType) => {
   const options = optionsArr;
 
 console.log(errors);
 
   return (
+    // <Controller
     <Box sx={{ width: 1 }}>
       <Typography sx={{ paddingBottom: '10px' }} variant="body1">
         
@@ -27,13 +29,14 @@ console.log(errors);
       <TextField
         id="outlined-select-currency"
         select
-      
+        {...field}
         sx={{ width: 1, padding: '0px', backgroundColor: '' }}
-        {...register(name, {
-          required: {
-            value: true,
-          },
-        })}
+        // {...register(name, {
+        //   required: {
+        //     value: true,
+        //   },
+        // })}
+        rules
         error={errors[name] ? true : false}
         helperText={errors[name] && showError}
       >

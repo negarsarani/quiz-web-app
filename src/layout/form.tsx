@@ -7,49 +7,37 @@ import { Container } from '@mui/material';
 import { useForm, Controller } from 'react-hook-form';
 import { Inputs } from '../type/type';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { INIT } from '../redux/slices/data.slice';
 
-import { submit , FormSubmit } from '../redux/slices/Form.slice';
-const Category = [
-  {
-    value: '',
-    label: 'Category',
-  },
-  {
-    value: 25,
-    label: 'Art',
-  },
-  {
-    value: 27,
-    label: 'Animals',
-  },
-  {
-    value: 21,
-    label: 'Sports',
-  },
-];
-const Difficulty = [
-  {
-    value: '',
-    label: 'Difficulty',
-  },
-  {
-    value: 'easy',
-    label: 'easy',
-  },
-  {
-    value: 'medium',
-    label: 'medium',
-  },
-  {
-    value: 'hard',
-    label: 'hard',
-  },
-];
+import { submit, FormSubmit } from '../redux/slices/Form.slice';
+import { Category, Difficulty } from '../features/selectArra';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+
 const Form = () => {
-  const formValue = useSelector(FormSubmit);
-  const dispatch = useDispatch()
-  
+  const [formData, setForm] = useState({
+    number: 0,
+    category: '',
+    difficulty: '',
+  });
+  // console.log(formData);
+
+  const navigate = useNavigate();
+  // const formValue = useSelector(FormSubmit);
+  const dispatch = useDispatch();
+  // useEffect(() => {
+  //   axios(
+  //     `https://opentdb.com/api.php?amount=${formData.number}&category=${formData.category}&difficulty=${formData.difficulty}`
+  //   ).then((res) => console.log(res.data));
+  // }, [form]);
+  // const handleAxios = () => {
+  //   return setTimeout(() => {
+  //     axios(
+  //       `https://opentdb.com/api.php?amount=${formData.number}&category=${formData.category}&difficulty=${formData.difficulty}`
+  //     ).then((res) => dispatch(INIT({ ...res.data })));
+  //   }, 100);
+  // };
   const {
     register,
     handleSubmit,
@@ -57,13 +45,30 @@ const Form = () => {
     control,
     formState: { errors },
   } = useForm<Inputs>({
+    defaultValues: {
+      number: 0,
+      category: '',
+      difficulty: '',
+    },
     mode: 'onChange',
     delayError: 1000,
   });
   const onSubmit = (data: Inputs) => {
-    dispatch(submit({number:data.number ,category:data.category , difficulty:data.difficulty }))
-    <Link to
-    reset();
+    // setForm({
+    //   number: data.number,
+    //   category: data.category,
+    //   difficulty: data.difficulty,
+    // });
+    console.log(data);
+
+    axios(
+      `https://opentdb.com/api.php?amount=${data.number}&category=${data.category}&difficulty=${data.difficulty}&token=14b78e87614703bbcc0f816fd14067d1570be41aded688a9d16c5d0e49267359`
+    ).then((res) => dispatch(INIT(res.data.results)));
+    // console.log(formValue);
+    // handleAxios();
+
+    // navigate('/quiz');
+    // reset();
   };
   return (
     <Container
@@ -133,16 +138,26 @@ const Form = () => {
           name={'difficulty'}
           register={register}
         />
-        <Select
-          labelText={'Select Category '}
-          optionsArr={Category}
-          label={'Category'}
-          errors={errors}
-          name={'category'}
-          showError="This Category  is 
-          required"
-          register={register}
+        <Controller
+          name="category"
+          control={control}
+          rules={{
+            required: 'Please enter something',
+          }}
+          render={({ field }) => (
+            <Select
+              labelText={'Select Category '}
+              optionsArr={Category}
+              label={'Category'}
+              errors={errors}
+              name={'category'}
+              showError="This Category  is required"
+              //  register={register}
+              field={field}
+            />
+          )}
         />
+
         <ButtonCustom
           bg="#da9301"
           children={'Start'}
