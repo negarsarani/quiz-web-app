@@ -6,14 +6,14 @@ export type Buttontype = {
   type?: string;
   width?: string;
 };
-export type AutoCompleteType = {
-  label: string;
-  labelText: string;
-  optionsArr: string[];
-  errors: any;
-  register:any;
+export type selectType = {
+  label:string
+  optionsArr:any,
+  register:any
+  showError:string
   name:string
-  control:any
+  errors:any
+  labelText:string
 };
 export type text = string;
 export type Inputs = {

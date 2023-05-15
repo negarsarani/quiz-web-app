@@ -10,8 +10,8 @@ function App() {
 
   return (
     <THEMEProvide>
-      {/* <Form /> */}
-      <QuestionPage/>
+      <Form />
+      {/* <QuestionPage/> */}
     </THEMEProvide>
   );
 }

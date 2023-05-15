@@ -20,7 +20,7 @@ const QuestionPage = () => {
           px: '3rem',
         },
       }}
-    >
+    > 
       <Box
         component="form"
         // onSubmit={handleSubmit(onSubmit)}

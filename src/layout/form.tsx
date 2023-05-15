@@ -1,12 +1,48 @@
 import { Typography } from '@mui/material';
 import Box from '@mui/material/Box';
-import AutoComplete from '../components/AutoComplete';
+import Select from '../components/Select';
 import { TextField } from '@mui/material';
 import ButtonCustom from '../components/Button';
 import { Container } from '@mui/material';
-import { useForm, Controller  } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 import { Inputs } from '../type/type';
 import { useState } from 'react';
+const Category = [
+  {
+    value: '',
+    label: "Category",
+  },
+  {
+    value: 'public',
+    label: 'public Information',
+  },
+  {
+    value: 'literature',
+    label: 'literature',
+  },
+  {
+    value: 'country',
+    label: 'country',
+  },
+];
+const Difficulty = [
+  {
+    value: '',
+    label: "Difficulty",
+  },{
+      value: 'easy',
+      label: 'easy',
+    },
+  {
+    value: 'medium',
+    label: 'medium',
+  },
+  {
+    value: 'hard',
+    label: 'hard',
+  },
+
+];
 const Form = () => {
   const [textValue, setTextValue] = useState({});
 
@@ -82,25 +118,23 @@ const Form = () => {
             helperText={errors.number && 'number is required'}
           />
         </div>
-        <AutoComplete
+        <Select
           labelText={'Select Difficulty '}
-          optionsArr={['Easy', 'Medium', 'Hard']}
-          
+          optionsArr={Difficulty}
+          showError="select Difficulty "
           label={'Difficulty'}
           errors={errors}
           name={'difficulty'}
           register={register}
-          control={control}
         />
-        <AutoComplete
+        <Select
           labelText={'Select Category '}
-          optionsArr={['Any Category', 'Art', 'Sports', 'Animals']}
+          optionsArr={Category}
           label={'Category'}
           errors={errors}
           name={'category'}
+          showError="select Category "
           register={register}
-          control={control}
-
         />
         <ButtonCustom
           bg="#da9301"
