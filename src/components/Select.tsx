@@ -27,7 +27,7 @@ console.log(errors);
       <TextField
         id="outlined-select-currency"
         select
-        defaultValue="op1"
+      
         sx={{ width: 1, padding: '0px', backgroundColor: '' }}
         {...register(name, {
           required: {

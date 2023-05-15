@@ -1,21 +1,25 @@
 import { createSlice } from '@reduxjs/toolkit';
 // import {}
 const initialState = {
-  number: "",
+  number: 0,
   category: '',
-  difficulty: ''
+  difficulty: '',
 };
-export const formSlice = createSlice({
-  name: 'formState',
+const formSlice = createSlice({
+  name: 'form',
   initialState,
   reducers: {
     submit: (state, action) => {
-      state.number = '10000';
+     state.number = action.payload.number;
+      state.category = action.payload.category;
+      state.difficulty = action.payload.difficulty;
     },
   },
 });
 
 export const { submit } = formSlice.actions;
-export default formSlice.reducer
 
-export const FormSubmit = (state:any) => state.formState.value
+export const FormSubmit = (state: any) => state.formState;
+
+
+export default formSlice.reducer;

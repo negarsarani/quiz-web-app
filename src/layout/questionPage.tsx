@@ -44,13 +44,7 @@ const QuestionPage = () => {
           gap: '1.8rem',
         }}
       >
-        <Typography
-          variant="h6"
-          sx={{ width: 1, textAlign: 'center', fontWeight: 'bold' }}
-        >
-          Why this is happend in japan ? which one in correct
-          aswer?????????????/
-        </Typography>
+        
         <ListButton/>
       </Box>
     </Container>

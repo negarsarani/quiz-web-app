@@ -7,7 +7,7 @@ import { Container } from '@mui/material';
 import { useForm, Controller } from 'react-hook-form';
 import { Inputs } from '../type/type';
 import { useSelector, useDispatch } from 'react-redux';
-import { submit } from '../redux/slices/Form.slice';
+import { submit , FormSubmit } from '../redux/slices/Form.slice';
 const Category = [
   {
     value: '',
@@ -45,8 +45,9 @@ const Difficulty = [
   },
 ];
 const Form = () => {
-  const FormValue = useSelector((state: any) => state.counter.value);
-
+  const formValue = useSelector(FormSubmit);
+  const dispatch = useDispatch()
+  
   const {
     register,
     handleSubmit,
@@ -58,7 +59,7 @@ const Form = () => {
     delayError: 1000,
   });
   const onSubmit = (data: Inputs) => {
-    console.log(JSON.stringify(data, null, 2));
+    dispatch(submit({number:data.number ,category:data.category , difficulty:data.difficulty }))
     reset();
   };
   return (
@@ -122,7 +123,8 @@ const Form = () => {
         <Select
           labelText={'Select Difficulty '}
           optionsArr={Difficulty}
-          showError="select Difficulty "
+          showError="This Difficulty is 
+          required"
           label={'Difficulty'}
           errors={errors}
           name={'difficulty'}
@@ -134,7 +136,8 @@ const Form = () => {
           label={'Category'}
           errors={errors}
           name={'category'}
-          showError="select Category "
+          showError="This Category  is 
+          required"
           register={register}
         />
         <ButtonCustom
