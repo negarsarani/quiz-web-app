@@ -1,20 +1,11 @@
-import { useState } from 'react';
-
-import Form from './layout/form';
-import Button from './components/Button';
 import THEMEProvide from './assets/MUI/theme';
-import QuestionPage from './layout/questionPage';
-
-
+import { RouterProvider } from 'react-router-dom';
+import { router } from './router/router';
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
-  
-      <THEMEProvide>
-        {/* <Form /> */}
-        <QuestionPage/>
-      </THEMEProvide>
+    <THEMEProvide>
+      <RouterProvider router={router} />
+    </THEMEProvide>
   );
 }
 

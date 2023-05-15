@@ -7,6 +7,8 @@ import { Container } from '@mui/material';
 import { useForm, Controller } from 'react-hook-form';
 import { Inputs } from '../type/type';
 import { useSelector, useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
+
 import { submit , FormSubmit } from '../redux/slices/Form.slice';
 const Category = [
   {
@@ -14,16 +16,16 @@ const Category = [
     label: 'Category',
   },
   {
-    value: 'public',
-    label: 'public Information',
+    value: 25,
+    label: 'Art',
   },
   {
-    value: 'literature',
-    label: 'literature',
+    value: 27,
+    label: 'Animals',
   },
   {
-    value: 'country',
-    label: 'country',
+    value: 21,
+    label: 'Sports',
   },
 ];
 const Difficulty = [
@@ -60,6 +62,7 @@ const Form = () => {
   });
   const onSubmit = (data: Inputs) => {
     dispatch(submit({number:data.number ,category:data.category , difficulty:data.difficulty }))
+    <Link to
     reset();
   };
   return (

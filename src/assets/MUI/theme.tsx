@@ -1,7 +1,11 @@
 import { ThemeProvider } from '@emotion/react';
 import { createTheme } from '@mui/material/styles';
 
-const theme = createTheme();
+const theme = createTheme({
+  typography:{
+    fontFamily:'dana'
+  }
+});
 
 theme.typography.h3 = {
   fontSize: '1.2rem',

@@ -6,8 +6,8 @@ body {
   height: 100%;
 }
 @font-face {
-  font-family: ;
-  src: url();
+  src: url(./assets/fonts/dana-medium.woff2);
+  font-family: dana;
 }
 *,
 *::after,
@@ -19,4 +19,7 @@ body {
 .flex-col {
   display: flex;
   flex-direction: column;
+}
+.color{
+  background-color: #8a2be2;
 }

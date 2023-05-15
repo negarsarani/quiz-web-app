@@ -1,6 +1,7 @@
 import { Container, Typography } from '@mui/material';
 import Box from '@mui/material/Box';
 import ListButton from '../components/ListButton';
+import ButtonCustom from '../components/Button';
 const QuestionPage = () => {
   return (
     <Container
@@ -44,8 +45,9 @@ const QuestionPage = () => {
           gap: '1.8rem',
         }}
       >
-        
+        <Typography variant='body1' sx={{color:"#49f956"}}> Correnct Answers 0/4</Typography>
         <ListButton/>
+        <ButtonCustom type='button' width='50%' bg='#ffab00' children={"Next Questions"} onClick={()=>{""} }/>
       </Box>
     </Container>
   );
