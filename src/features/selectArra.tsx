@@ -1,5 +1,8 @@
 export const Category = [
-  
+  {
+    value: 'None',
+    label: 'None',
+  },
   {
     value: 25,
     label: 'Art',
@@ -14,7 +17,10 @@ export const Category = [
   },
 ];
 export const Difficulty = [
-  
+  {
+    value: 'None',
+    label: 'None',
+  },
   {
     value: 'easy',
     label: 'easy',

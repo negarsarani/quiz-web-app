@@ -14,6 +14,9 @@ export type selectType = {
   name:string
   errors:any
   labelText:string
+  control:any
+ 
+
 };
 export type text = string;
 export type Inputs = {
