@@ -24,3 +24,9 @@ export type Inputs = {
   difficulty: string;
   category: string;
 };
+export type ListItemType = {
+  question: string;
+  item: string[];
+  setChooseVal: any;
+  chooseVal: any;
+};

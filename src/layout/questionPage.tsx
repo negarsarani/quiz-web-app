@@ -2,14 +2,16 @@ import { Container, Typography } from '@mui/material';
 import Box from '@mui/material/Box';
 import ListButton from '../components/ListButton';
 import ButtonCustom from '../components/Button';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Data } from '../redux/slices/data.slice';
 import { useSelector, useDispatch } from 'react-redux';
 import CircularProgress from '@mui/material/CircularProgress';
-
+import { NEXT, ChangeAnswer } from '../redux/slices/data.slice';
+import ModalFinish from '../components/Modal';
 const QuestionPage = () => {
   const data = useSelector(Data);
-
+  const dispatch = useDispatch();
+  const [finished, setFinished] = useState(false);
   return (
     <Container
       maxWidth="lg"
@@ -30,6 +32,9 @@ const QuestionPage = () => {
         },
       }}
     >
+      {finished && (
+        <ModalFinish finished={finished} setFinished={setFinished} />
+      )}
       <Box
         component="form"
         // onSubmit={handleSubmit(onSubmit)}
@@ -55,16 +60,34 @@ const QuestionPage = () => {
         {data.Alldata?.length > 0 ? (
           <>
             <Typography variant="body1" sx={{ color: '#49f956' }}>
-              Correnct Answers 0/4
+              {`Correnct Answers ${data.numberOfQuestions.NumberOfCorrect} / ${data.numberOfQuestions.AllQuestion}`}
             </Typography>
-            <ListButton />
+            <ListButton
+              question={data.currentData.question}
+              item={[
+                data.currentData.correct_answer,
+                ...data.currentData.incorrect_answers,
+              ]}
+              // setChooseVal={setChooseVal}
+              // chooseVal={chooseVal}
+            />
             <ButtonCustom
               type="button"
               width="50%"
               bg="#ffab00"
               children={'Next Questions'}
               onClick={() => {
-                ('');
+                if (data.numberOfQuestions.AllQuestion - 1 === data.question) {
+                  setFinished(true);
+                } else {
+                  if (data.correctAnswer === -1) {
+                    ('');
+                  } else {
+                    dispatch(NEXT({ flag: true }));
+                  }
+                }
+
+                dispatch(ChangeAnswer(-1));
               }}
             />
           </>

@@ -18,8 +18,6 @@ import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import registerSchema from '../features/schema/schema';
 const Form = () => {
-  
-
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
@@ -41,12 +39,60 @@ const Form = () => {
     delayError: 1000,
   });
   const onSubmit = (data: Inputs) => {
-    
-
-    axios(
-      `https://opentdb.com/api.php?amount=${data.number}&category=${data.category}&difficulty=${data.difficulty}&token=210acfb339a98b585fe9a42b820e030506853db99ed667119907673745d2a4dc`
-    ).then((res) => dispatch(INIT(res.data.results)));
-
+    // axios(
+    //   `https://opentdb.com/api.php?amount=${data.number}&category=${data.category}&difficulty=${data.difficulty}&type=multiple&token=3211ada1ac72b342e486e5ee2c12943b8f6e77c5c64710fe5f693be2a69937b4`
+    // ).then((res) => dispatch(INIT(res.data.results)));
+    const a = [
+      {
+        category: 'Animals',
+        type: 'multiple',
+        difficulty: 'medium',
+        question: 'What is the scientific name for the &quot;Polar Bear&quot;?',
+        correct_answer: 'Ursus Maritimus',
+        incorrect_answers: ['Polar Bear', 'Ursus Spelaeus', 'Ursus Arctos'],
+      },
+      {
+        category: 'Animals',
+        type: 'multiple',
+        difficulty: 'medium',
+        question:
+          'Which animal was part of an Russian domestication experiment in 1959?',
+        correct_answer: 'Foxes',
+        incorrect_answers: ['Pigeons', 'Bears', 'Alligators'],
+      },
+      {
+        category: 'Animals',
+        type: 'multiple',
+        difficulty: 'medium',
+        question:
+          'What dog bread is one of the oldest breeds of dog and has flourished since before 400 BCE.',
+        correct_answer: 'Pugs',
+        incorrect_answers: ['Bulldogs', 'Boxers', 'Chihuahua'],
+      },
+      {
+        category: 'Animals',
+        type: 'multiple',
+        difficulty: 'medium',
+        question:
+          'What is the common term for bovine spongiform encephalopathy (BSE)?',
+        correct_answer: 'Mad Cow disease',
+        incorrect_answers: [
+          'Mickle',
+          'Milk fever',
+          'Foot-and-mouth disease',
+        ],
+      },
+      {
+        category: 'Animals',
+        type: 'multiple',
+        difficulty: 'medium',
+        question:
+          '&quot;Decapods&quot; are an order of ten-footed crustaceans.  Which of these are NOT decapods?',
+        correct_answer: 'Krill',
+        incorrect_answers: ['Lobsters', 'Shrimp', 'Crabs'],
+      },
+    ];
+    dispatch(INIT(a));
     navigate('/quiz');
     reset();
   };
@@ -96,7 +142,9 @@ const Form = () => {
           Setup Quiz
         </Typography>
         <div style={{ width: '100%', gap: '10px' }} className={'flex-col'}>
-          <label htmlFor="" style={{fontFamily:"dana"}}>Number</label>
+          <label htmlFor="" style={{ fontFamily: 'dana' }}>
+            Number
+          </label>
           <Controller
             name={'number'}
             control={control}

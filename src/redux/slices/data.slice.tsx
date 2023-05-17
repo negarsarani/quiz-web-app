@@ -4,6 +4,7 @@ const initialState: any = {
   Alldata: [],
   currentData: {},
   numberOfQuestions: { AllQuestion: 0, NumberOfCorrect: 0 },
+  correctAnswer: -1,
 };
 const dataSlice = createSlice({
   name: 'data',
@@ -19,17 +20,24 @@ const dataSlice = createSlice({
     },
     NEXT: (state, action) => {
       if (action.payload.flag === true) {
-        state.numberOfQuestions = {
-          AllQuestion: state.AllData.length,
-          NumberOfCorrect: state.NumberOfCorrect + 1,
-        };
+        state.numberOfQuestions.NumberOfCorrect =
+          state.numberOfQuestions.NumberOfCorrect + 1;
       }
       state.question = state.question + 1;
-      state.CurrentData = state.Alldata[state.question];
+      state.currentData = { ...state.Alldata[state.question] };
+    },
+    RESET: (state) => {
+      state.question = 0;
+      state.Alldata = [];
+      state.currentData = {};
+      state.numberOfQuestions = { AllQuestion: 0, NumberOfCorrect: 0 };
+    },
+    ChangeAnswer: (state, action) => {
+      state.correctAnswer = action.payload;
     },
   },
 });
 
-export const { INIT } = dataSlice.actions;
+export const { INIT, NEXT, RESET ,ChangeAnswer } = dataSlice.actions;
 export const Data = (state: any) => state.dataState;
 export default dataSlice.reducer;
