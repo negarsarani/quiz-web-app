@@ -64,12 +64,8 @@ const QuestionPage = () => {
             </Typography>
             <ListButton
               question={data.currentData.question}
-              item={[
-                data.currentData.correct_answer,
-                ...data.currentData.incorrect_answers,
-              ]}
-              // setChooseVal={setChooseVal}
-              // chooseVal={chooseVal}
+              item={data.currentData.items}
+              
             />
             <ButtonCustom
               type="button"
