@@ -26,14 +26,9 @@ const dataSlice = createSlice({
         NumberOfCorrect: 0,
       };
     },
-    NEXT: (state, action) => {
+    NEXT: (state) => {
       const { question, correct_answer, incorrect_answers } =
         state.Alldata[state.question];
-
-      if (action.payload.flag === true) {
-        state.numberOfQuestions.NumberOfCorrect =
-          state.numberOfQuestions.NumberOfCorrect + 1;
-      }
       state.question = state.question + 1;
       state.currentData = {
         question: question,
@@ -47,12 +42,13 @@ const dataSlice = createSlice({
       state.currentData = {};
       state.numberOfQuestions = { AllQuestion: 0, NumberOfCorrect: 0 };
     },
-    ChangeAnswer: (state, action) => {
-      state.correctAnswer = action.payload;
+    ChangeNumberOfCorrect: (state) => {
+      state.numberOfQuestions.NumberOfCorrect =
+        state.numberOfQuestions.NumberOfCorrect + 1;
     },
   },
 });
 
-export const { INIT, NEXT, RESET, ChangeAnswer } = dataSlice.actions;
+export const { INIT, NEXT, RESET, ChangeNumberOfCorrect } = dataSlice.actions;
 export const Data = (state: any) => state.dataState;
 export default dataSlice.reducer;

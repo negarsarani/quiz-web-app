@@ -6,12 +6,14 @@ import { useState } from 'react';
 import { Data } from '../redux/slices/data.slice';
 import { useSelector, useDispatch } from 'react-redux';
 import CircularProgress from '@mui/material/CircularProgress';
-import { NEXT, ChangeAnswer } from '../redux/slices/data.slice';
+import { NEXT, ChangeNumberOfCorrect } from '../redux/slices/data.slice';
 import ModalFinish from '../components/Modal';
 const QuestionPage = () => {
   const data = useSelector(Data);
   const dispatch = useDispatch();
-  const [finished, setFinished] = useState(false);
+  const [finished, setFinished] = useState(false); //Modal
+  const [chooseVal, setChooseVal] = useState(-1);
+  const [CurrentAnswer, setCurrentAnswer] = useState('');
   return (
     <Container
       maxWidth="lg"
@@ -63,9 +65,11 @@ const QuestionPage = () => {
               {`Correnct Answers ${data.numberOfQuestions.NumberOfCorrect} / ${data.numberOfQuestions.AllQuestion}`}
             </Typography>
             <ListButton
+              setChooseVal={setChooseVal}
+              chooseVal={chooseVal}
               question={data.currentData.question}
               item={data.currentData.items}
-              
+              setCurrentAnswer={setCurrentAnswer}
             />
             <ButtonCustom
               type="button"
@@ -76,14 +80,18 @@ const QuestionPage = () => {
                 if (data.numberOfQuestions.AllQuestion - 1 === data.question) {
                   setFinished(true);
                 } else {
-                  if (data.correctAnswer === -1) {
-                    ('');
+                  if (chooseVal === -1) {
+                    if (CurrentAnswer === data.currentData.correctItem) {
+                      dispatch(ChangeNumberOfCorrect());
+                    }
                   } else {
-                    dispatch(NEXT({ flag: true }));
+                    dispatch(NEXT());
+                    if (CurrentAnswer === data.currentData.correctItem) {
+                      dispatch(ChangeNumberOfCorrect());
+                    }
                   }
                 }
-
-                dispatch(ChangeAnswer(-1));
+                setChooseVal(-1);
               }}
             />
           </>
