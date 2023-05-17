@@ -18,14 +18,10 @@ import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import registerSchema from '../features/schema/schema';
 const Form = () => {
-  const [formData, setForm] = useState({
-    number: "",
-    category: '',
-    difficulty: '',
-  });
-  // const schema
+  
+
   const navigate = useNavigate();
-  // const formValue = useSelector(FormSubmit);
+
   const dispatch = useDispatch();
 
   const {
@@ -45,14 +41,14 @@ const Form = () => {
     delayError: 1000,
   });
   const onSubmit = (data: Inputs) => {
-    console.log(data);
+    
 
     axios(
-      `https://opentdb.com/api.php?amount=${data.number}&category=${data.category}&difficulty=${data.difficulty}&token=14b78e87614703bbcc0f816fd14067d1570be41aded688a9d16c5d0e49267359`
+      `https://opentdb.com/api.php?amount=${data.number}&category=${data.category}&difficulty=${data.difficulty}&token=210acfb339a98b585fe9a42b820e030506853db99ed667119907673745d2a4dc`
     ).then((res) => dispatch(INIT(res.data.results)));
 
-    // navigate('/quiz');
-    // reset();
+    navigate('/quiz');
+    reset();
   };
   return (
     <Container
