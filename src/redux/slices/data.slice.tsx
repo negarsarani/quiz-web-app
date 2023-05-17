@@ -27,14 +27,18 @@ const dataSlice = createSlice({
       };
     },
     NEXT: (state) => {
-      const { question, correct_answer, incorrect_answers } =
-        state.Alldata[state.Eachquestion];
-      state.Eachquestion = state.Eachquestion + 1;
-      state.currentData = {
-        question: question,
-        items: [...shuffleArrayFunc([correct_answer, ...incorrect_answers])],
-        correctItem: correct_answer,
-      };
+      console.log(state.Eachquestion + 1 , state.numberOfQuestions.AllQuestion);
+      
+      
+        state.Eachquestion = state.Eachquestion + 1;
+        const { question, correct_answer, incorrect_answers } =
+          state.Alldata[state.Eachquestion];
+        state.currentData = {
+          question: question,
+          items: [...shuffleArrayFunc([correct_answer, ...incorrect_answers])],
+          correctItem: correct_answer,
+        
+      }
     },
     RESET: (state) => {
       state.Eachquestion = 0;

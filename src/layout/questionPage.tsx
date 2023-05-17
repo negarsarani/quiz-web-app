@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { Data } from '../redux/slices/data.slice';
 import { useSelector, useDispatch } from 'react-redux';
 import CircularProgress from '@mui/material/CircularProgress';
-import { NEXT, ChangeNumberOfCorrect , INIT} from '../redux/slices/data.slice';
+import { NEXT, ChangeNumberOfCorrect, INIT } from '../redux/slices/data.slice';
 import ModalFinish from '../components/Modal';
 const QuestionPage = () => {
   const data = useSelector(Data);
@@ -77,7 +77,10 @@ const QuestionPage = () => {
               bg="#ffab00"
               children={'Next Questions'}
               onClick={() => {
-                if (data.numberOfQuestions.AllQuestion  === data.Eachquestion) {
+                if (
+                  data.Eachquestion + 1 ===
+                  data.numberOfQuestions.AllQuestion
+                ) {
                   setFinished(true);
 
                   if (CurrentAnswer === data.currentData.correctItem) {
@@ -85,7 +88,7 @@ const QuestionPage = () => {
                   }
                 } else {
                   if (chooseVal === -1) {
-                   ""
+                    ('');
                   } else {
                     dispatch(NEXT());
                     if (CurrentAnswer === data.currentData.correctItem) {
@@ -98,7 +101,13 @@ const QuestionPage = () => {
             />
           </>
         ) : (
-          <Box sx={{ display: 'flex' }}>
+          <Box  sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            flexDirection: 'column',
+            gap:"2rem"
+          }}>
             <CircularProgress />
             <Typography>please Wait</Typography>
           </Box>

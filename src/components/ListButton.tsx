@@ -1,19 +1,17 @@
-import React, { useState } from 'react';
 import ListItemText from '@mui/material/ListItemText';
 import List from '@mui/material/List';
 import { ListItemButton, Typography } from '@mui/material';
 import { ListItemType } from '../type/type';
-import { Data,ChangeNumberOfCorrect  } from '../redux/slices/data.slice';
+import { Data  } from '../redux/slices/data.slice';
 import { useSelector, useDispatch } from 'react-redux';
 const ListButton = ({
   question,
   item,
   setChooseVal,
   chooseVal,
-  setCurrentAnswer
+  setCurrentAnswer,
+  
 }: ListItemType) => {
-  const dispatch = useDispatch();
-  const data = useSelector(Data);
   const [value1, value2, value3, value4] = item;
   const handleListItemClick = (index: number) => {
     setChooseVal(index);

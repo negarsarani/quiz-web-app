@@ -12,6 +12,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Data } from '../redux/slices/data.slice';
 import { useSelector } from 'react-redux';
+import ButtonCustom from './Button';
 
 const style = {
   position: 'absolute' as 'absolute',
@@ -20,9 +21,15 @@ const style = {
   transform: 'translate(-50%, -50%)',
   width: 400,
   bgcolor: 'background.paper',
-  border: '2px solid #000',
+  border: '2px solid #EAEAEA',
   boxShadow: 24,
   p: 4,
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  flexDirection: 'column',
+  gap: '2rem',
+  borderRadius: '1rem'
 };
 export default function ModalFinish({ finished, setFinished }: any) {
   const data = useSelector(Data);
@@ -53,22 +60,39 @@ export default function ModalFinish({ finished, setFinished }: any) {
       >
         <Fade in={finished}>
           <Box sx={style}>
-            <Typography id="transition-modal-title" variant="h6" component="h2">
-              {`${totalPercent}% ${
-                totalPercent < 50 ? 'Failed DO It Again' : "WOW! You're Genius"
+            <Typography
+              id="transition-modal-title"
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+              variant="h6"
+              component="h2"
+            >
+              {`${totalPercent}%    ${
+                totalPercent < 50 ? '  Failed DO It Again💪' : "  WOW! You're Genius💡"
               }`}
             </Typography>
-            <Typography id="transition-modal-description" sx={{ mt: 2 }}>
+            <Typography
+              id="transition-modal-description"
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
               <Link to="/">
-                {' '}
-                <span
+                <ButtonCustom
+                  bg="#da9301"
+                  children={' play Again??'}
+                  type="button"
+                  style=""
                   onClick={() => {
                     dispatch(RESET());
                     handleClose();
                   }}
-                >
-                  play Again??
-                </span>
+                />
               </Link>
             </Typography>
           </Box>

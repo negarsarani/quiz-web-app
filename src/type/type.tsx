@@ -29,4 +29,5 @@ export type ListItemType = {
   item: string[];
   setChooseVal: any;
   chooseVal: any;
+  setCurrentAnswer:any
 };
