@@ -9,7 +9,6 @@ import { Inputs } from '../type/type';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { INIT } from '../redux/slices/data.slice';
-// import { submit, FormSubmit } from '../redux/slices/Form.slice';
 import { Category, Difficulty } from '../features/selectArra';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
@@ -17,9 +16,10 @@ import { DevTool } from '@hookform/devtools';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import registerSchema from '../features/schema/schema';
+import { Data } from '../redux/slices/data.slice';
+
 const Form = () => {
   const navigate = useNavigate();
-
   const dispatch = useDispatch();
 
   const {
@@ -76,11 +76,7 @@ const Form = () => {
         question:
           'What is the common term for bovine spongiform encephalopathy (BSE)?',
         correct_answer: 'Mad Cow disease',
-        incorrect_answers: [
-          'Mickle',
-          'Milk fever',
-          'Foot-and-mouth disease',
-        ],
+        incorrect_answers: ['Mickle', 'Milk fever', 'Foot-and-mouth disease'],
       },
       {
         category: 'Animals',

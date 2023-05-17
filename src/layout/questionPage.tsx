@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { Data } from '../redux/slices/data.slice';
 import { useSelector, useDispatch } from 'react-redux';
 import CircularProgress from '@mui/material/CircularProgress';
-import { NEXT, ChangeNumberOfCorrect } from '../redux/slices/data.slice';
+import { NEXT, ChangeNumberOfCorrect , INIT} from '../redux/slices/data.slice';
 import ModalFinish from '../components/Modal';
 const QuestionPage = () => {
   const data = useSelector(Data);
@@ -77,13 +77,15 @@ const QuestionPage = () => {
               bg="#ffab00"
               children={'Next Questions'}
               onClick={() => {
-                if (data.numberOfQuestions.AllQuestion - 1 === data.question) {
+                if (data.numberOfQuestions.AllQuestion  === data.Eachquestion) {
                   setFinished(true);
+
+                  if (CurrentAnswer === data.currentData.correctItem) {
+                    dispatch(ChangeNumberOfCorrect());
+                  }
                 } else {
                   if (chooseVal === -1) {
-                    if (CurrentAnswer === data.currentData.correctItem) {
-                      dispatch(ChangeNumberOfCorrect());
-                    }
+                   ""
                   } else {
                     dispatch(NEXT());
                     if (CurrentAnswer === data.currentData.correctItem) {
