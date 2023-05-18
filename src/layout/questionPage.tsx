@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { Data } from '../redux/slices/data.slice';
 import { useSelector, useDispatch } from 'react-redux';
 import CircularProgress from '@mui/material/CircularProgress';
-import { NEXT, ChangeNumberOfCorrect, INIT } from '../redux/slices/data.slice';
+import { NEXT, ChangeNumberOfCorrect } from '../redux/slices/data.slice';
 import ModalFinish from '../components/Modal';
 const QuestionPage = () => {
   const data = useSelector(Data);

@@ -37,12 +37,12 @@ const Form = () => {
   });
   const onSubmit = (data: Inputs) => {
     axios(
-      `https://opentdb.com/api.php?amount=${data.number}&category=${data.category}&difficulty=${data.difficulty}&type=multiple&token=9d14283ba17858a785811659684eaa1aec10ef11bf0f0c6353650f6a3bfc469c`
+      `https://opentdb.com/api.php?amount=${data.number}&category=${data.category}&difficulty=${data.difficulty}&type=multiple&token=466db546c5d05d1f71e9b71ec5b34ef65c2dc5a1b47b54010c354df6057ef320`
     ).then((res) => {
       dispatch(INIT(res.data.results));
-      navigate('/quiz');
+      
     });
-
+    navigate('/quiz');
     reset();
   };
   return (

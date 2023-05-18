@@ -27,7 +27,7 @@ const dataSlice = createSlice({
       };
     },
     NEXT: (state) => {
-      console.log(state.Eachquestion + 1 , state.numberOfQuestions.AllQuestion);
+      // console.log(state.Eachquestion + 1 , state.numberOfQuestions.AllQuestion);
       
       
         state.Eachquestion = state.Eachquestion + 1;

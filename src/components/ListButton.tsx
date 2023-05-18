@@ -2,8 +2,6 @@ import ListItemText from '@mui/material/ListItemText';
 import List from '@mui/material/List';
 import { ListItemButton, Typography } from '@mui/material';
 import { ListItemType } from '../type/type';
-import { Data  } from '../redux/slices/data.slice';
-import { useSelector, useDispatch } from 'react-redux';
 const ListButton = ({
   question,
   item,

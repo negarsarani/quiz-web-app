@@ -10,7 +10,6 @@ const Select = ({
   label,
   optionsArr,
   register,
-  showError,
   name,
   errors,
   labelText,
