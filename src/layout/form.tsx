@@ -36,12 +36,14 @@ const Form = () => {
     delayError: 1000,
   });
   const onSubmit = (data: Inputs) => {
-    axios(
-      `https://opentdb.com/api.php?amount=${data.number}&category=${data.category}&difficulty=${data.difficulty}&type=multiple&token=466db546c5d05d1f71e9b71ec5b34ef65c2dc5a1b47b54010c354df6057ef320`
-    ).then((res) => {
-      dispatch(INIT(res.data.results));
-      
+    axios('https://opentdb.com/api_token.php?command=request').then((res) => {
+      axios(
+        `https://opentdb.com/api.php?amount=${data.number}&category=${data.category}&difficulty=${data.difficulty}&type=multiple&token=${res.data.token}`
+      ).then((res) => {
+        dispatch(INIT(res.data.results));
+      });
     });
+
     navigate('/quiz');
     reset();
   };
