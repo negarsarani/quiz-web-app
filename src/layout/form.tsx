@@ -67,6 +67,9 @@ const Form = () => {
         },
       }}
     >
+      <Typography variant="h3" component="h2" sx={{marginBottom:"3rem"}} fontWeight={'bold'}>
+          Welcome to negar's quiz
+        </Typography>
       <Box
         component="form"
         onSubmit={handleSubmit(onSubmit)}
@@ -89,6 +92,7 @@ const Form = () => {
           gap: '1.8rem',
         }}
       >
+        
         <Typography variant="h3" component="h2" fontWeight={'bold'}>
           Setup Quiz
         </Typography>
@@ -148,7 +152,7 @@ const Form = () => {
           width="100%"
         />
       </Box>
-      <DevTool control={control} />
+      {/* <DevTool control={control} /> */}
     </Container>
   );
 };
