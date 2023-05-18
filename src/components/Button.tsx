@@ -9,6 +9,7 @@ function ButtonCustom({ bg, children, onClick, type, width }: Buttontype) {
     >
       {children}
     </button>
-  );
+  ); 
+  
 }
 export default ButtonCustom;
