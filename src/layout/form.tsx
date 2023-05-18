@@ -11,7 +11,6 @@ import { useNavigate } from 'react-router-dom';
 import { INIT } from '../redux/slices/data.slice';
 import { Category, Difficulty } from '../features/selectArra';
 import axios from 'axios';
-import { DevTool } from '@hookform/devtools';
 import { yupResolver } from '@hookform/resolvers/yup';
 import registerSchema from '../features/schema/schema';
 
@@ -154,7 +153,7 @@ const Form = () => {
       </Box>
       {/* <DevTool control={control} /> */}
     </Container>
-    
+
   );
 };
 
